@@ -1,0 +1,18 @@
+[
+    {
+      "question": "What is the capital of France?",
+      "answer": "Paris",
+      "correct": true
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "answer": "Mars",
+      "correct": true
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "answer": "Leonardo da Vinci",
+      "correct": true
+    }
+  ]
+  
