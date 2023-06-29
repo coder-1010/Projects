@@ -248,7 +248,7 @@ public class AdminBackend {
 	    				sub=input.nextLine();
 	    				System.out.print("Class: ");
 	    				cls=input.nextLine();
-	    				query="INSERT INTO SubjectsAvailable VALUES ('subject 1','class 1');";
+	    				query="INSERT INTO SubjectsAvailable VALUES ('"+sub+"','"+cls+"');";
 	    				break;
 	    		
 	    		case 9: query="SELECT * FROM AssignClasses;";
