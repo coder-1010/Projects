@@ -1,5 +1,3 @@
-package practiceProject.card2.three;
-
 public class Eproduct {
 	int pid;
 	String name;
