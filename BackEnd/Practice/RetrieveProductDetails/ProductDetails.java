@@ -1,5 +1,3 @@
-package practiceProject.card2.two;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
