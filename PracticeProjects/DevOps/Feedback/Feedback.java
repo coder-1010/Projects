@@ -1,5 +1,3 @@
-package practiceProject.card3.two;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
