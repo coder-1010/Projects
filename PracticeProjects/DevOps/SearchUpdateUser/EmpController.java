@@ -1,5 +1,3 @@
-package practiceProject.card3.one;
-
 import java.util.List;    
 import org.springframework.beans.factory.annotation.Autowired;    
 import org.springframework.stereotype.Controller;  
