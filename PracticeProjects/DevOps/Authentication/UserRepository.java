@@ -1,5 +1,3 @@
-package practiceProject.card3.three;
-
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
