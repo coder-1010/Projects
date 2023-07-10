@@ -1,6 +1,3 @@
-package practiceProject.card3.one;
-
-
 public class Emp {    
 	@Override
 	public String toString() {
