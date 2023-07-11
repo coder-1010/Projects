@@ -1,5 +1,3 @@
-package practiceProject.card6.two;
-
 import java.net.MalformedURLException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
