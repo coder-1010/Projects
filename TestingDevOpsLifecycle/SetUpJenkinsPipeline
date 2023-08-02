@@ -18,12 +18,12 @@ pipeline {
   agent any
   environment {
     JD_IMAGE = 'lapulga/angular_default_image'
-    registryCredential = 'Hashirama'
+    registryCredential = 'resCred'
   }
       stages {
     stage('Clone Repository') {
       steps {
-        git branch: 'main', url: 'https://github.com/akshay09968/zaggle-prac-assign.git'
+        git branch: 'main', url: ‘https://github.com/coder-1010/Projects/tree/d84f0755374bed065fb08cff4597c7a90c7c0051/TestingDevOpsLifecycle'
       }
     }
         
