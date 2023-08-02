@@ -1,0 +1,163 @@
+import React, { useState, useEffect } from 'react';
+import {FaSearch} from 'react-icons/fa';
+import './App.css';
+const Pokemon = [
+{ id: 1, name: 'Bulbasaur', attack: '49', defense: '49', hp: '45', img: 'img_url_1' },
+{ id: 2, name: 'Ivysaur', attack: '62', defense: '63', hp: '60', img: 'img_url_2' },
+{ id: 3, name: 'Venusaur', attack: '82', defense: '83', hp: '80', img: 'img_url_3' },
+{ id: 4, name: 'Charmander', attack: '52', defense: '43', hp: '39', img: 'img_url_4'
+},
+{ id: 5, name: 'Charmeleon', attack: '64', defense: '58', hp: '58', img: 'img_url_5'
+},
+{ id: 6, name: 'Charizard', attack: '84', defense: '78', hp: '78', img: 'img_url_6' },
+{ id: 7, name: 'Squirtle', attack: '48', defense: '65', hp: '44', img: 'img_url_7' },
+{ id: 8, name: 'Wartortle', attack: '63', defense: '80', hp: '59', img: 'img_url_8' },
+{ id: 9, name: 'Blastoise', attack: '83', defense: '100', hp: '79', img: 'img_url_9'
+},
+{ id: 10, name: 'Caterpie', attack: '30', defense: '35', hp: '45', img: 'img_url_10'
+},
+{ id: 11, name: 'Metapod', attack: '20', defense: '55', hp: '50', img: 'img_url_11' },
+{ id: 12, name: 'Butterfree', attack: '45', defense: '50', hp: '60', img: 'img_url_12'
+},
+{ id: 13, name: 'Weedle', attack: '35', defense: '30', hp: '40', img: 'img_url_13' },
+{ id: 14, name: 'Kakuna', attack: '25', defense: '50', hp: '45', img: 'img_url_14' },
+{ id: 15, name: 'Beedrill', attack: '90', defense: '40', hp: '65', img: 'img_url_15'
+},
+{ id: 16, name: 'Pidgey', attack: '45', defense: '40', hp: '40', img: 'img_url_16' },
+{ id: 17, name: 'Pidgeotto', attack: '60', defense: '55', hp: '63', img: 'img_url_17'
+},
+{ id: 18, name: 'Pidgeot', attack: '80', defense: '75', hp: '83', img: 'img_url_18' },
+{ id: 19, name: 'Rattata', attack: '56', defense: '35', hp: '30', img: 'img_url_19' },
+{ id: 20, name: 'Raticate', attack: '81', defense: '60', hp: '55', img: 'img_url_20'
+},
+{ id: 21, name: 'Spearow', attack: '60', defense: '30', hp: '40', img: 'img_url_21' },
+{ id: 22, name: 'Fearow', attack: '90', defense: '65', hp: '65', img: 'img_url_22' },
+{ id: 23, name: 'Ekans', attack: '60', defense: '44', hp: '35', img: 'img_url_23' },
+{ id: 24, name: 'Arbok', attack: '85', defense: '69', hp: '60', img: 'img_url_24' },
+{ id: 25, name: 'Pikachu', attack: '55', defense: '40', hp: '35', img: 'img_url_25' },
+{ id: 26, name: 'Raichu', attack: '90', defense: '55', hp: '60', img: 'img_url_26' },
+{ id: 27, name: 'Sandshrew', attack: '75', defense: '85', hp: '50', img: 'img_url_27'
+},
+  { id: 28, name: 'Sandslash', attack: '100', defense: '110', hp: '75', img: 'img_url_28' },
+{ id: 29, name: 'Nidoran♀', attack: '47', defense: '52', hp: '55', img: 'img_url_29' },
+{ id: 30, name: 'Nidorina', attack: '62', defense: '67', hp: '70', img: 'img_url_30' },
+{ id: 31, name: 'Nidoqueen', attack: '92', defense: '87', hp: '90', img: 'img_url_31' },
+{ id: 32, name: 'Nidoran♂', attack: '57', defense: '40', hp: '46', img: 'img_url_32' },
+{ id: 33, name: 'Nidorino', attack: '72', defense: '57', hp: '61', img: 'img_url_33' },
+{ id: 34, name: 'Nidoking', attack: '102', defense: '77', hp: '81', img: 'img_url_34' },
+{ id: 35, name: 'Clefairy', attack: '45', defense: '48', hp: '70', img: 'img_url_35' },
+{ id: 36, name: 'Clefable', attack: '70', defense: '73', hp: '95', img: 'img_url_36' },
+{ id: 37, name: 'Vulpix', attack: '41', defense: '40', hp: '38', img: 'img_url_37' }, { id: 38, name: 'Ninetales', attack: '76', defense: '75', hp: '73', img: 'img_url_38' },
+{ id: 39, name: 'Jigglypuff', attack: '45', defense: '20', hp: '115', img: 'img_url_39' },
+{ id: 40, name: 'Wigglytuff', attack: '70', defense: '45', hp: '140', img: 'img_url_40' },
+// Add more Pokémon entries here...
+];
+;
+const App =()=>{
+const [page,setPage] = useState(1);
+const [list,setList] = useState([]);
+const [searchList,setSearchList] = useState([]);
+const [opacityvalue, setOpacityValue] = useState(1);
+const len = (Pokemon.length)/10;
+const num = [];
+for(let i=1;i<=len;i++){
+num.push(i);
+}
+const searchHandle = (e) => {
+
+  const searchVar = e.target.value.toLowerCase();
+if (searchVar === "") {
+setSearchList([]);
+} else {
+const filteredList = Pokemon.filter(item =>
+item.name.toLowerCase().startsWith(searchVar));
+setSearchList(filteredList);
+}
+};
+const handleFocus=()=>{
+setOpacityValue(0);
+}
+const handleBlur=()=>{
+setOpacityValue(1);
+}
+const pageList = (e) => {
+const value = e.target.key;
+setPage(parseInt(value));
+setList([]);
+const temp = [];
+const cp = parseInt(value);
+for (let i = (cp - 1) * 10; i <= (cp * 10 - 1); i++) {
+if (i < Pokemon.length) {
+temp.push(Pokemon[i]);
+}
+}
+setList(temp);
+};
+const prev = () => {
+setPage(prevPage => prevPage === 1 ? 1 : prevPage - 1); pagination(); // Add this line to update the list
+};
+const next = () => {
+setPage(prevPage => prevPage === len ? len : prevPage + 1); pagination(); // Add this line to update the list
+};
+const pagination = () => {
+setList([]);
+const temp = [];
+const cp = page;
+
+  for (let i = (cp - 1) * 10; i <= (cp * 10 - 1); i++) {
+if (i < Pokemon.length) {
+temp.push(Pokemon[i]);
+}
+}
+setList(temp);
+};
+useEffect(() => {
+setList(Pokemon.slice(0,10));
+}, []);
+return (
+<div className='main'>
+<strong><h3>Pokemon Database</h3></strong>
+<br></br>
+<FaSearch id="searchIcon" className="search-icon" style={{opacity:opacityvalue}}/> {/* marginLeft:'39vw' */}
+<input type="text" id="search" name="search"className='search-container' onChange={searchHandle} onFocus={handleFocus} onBlur={handleBlur}/>
+<br></br>
+<div className='ali'>
+<div className='row alig'>
+<div className='col-sm-2'>Name</div>
+<div className='col-sm-2'>Attack</div>
+<div className='col-sm-2'>Defense</div>
+<div className='col-sm-2' style={{borderRight:'none'}}>Hp</div>
+</div>
+<div>
+{searchList.length === 0 ? (
+list.map((item) => (
+<div className='row' key={item.id}>
+<div className='col-sm-2'>{item.name}</div>
+<div className='col-sm-2'>{item.attack}</div>
+<div className='col-sm-2'>{item.defense}</div>
+<div className='col-sm-2' style={{borderRight:'none'}}>{item.hp}</div>
+</div>
+)) ):
+(
+searchList.map((item) => (
+<div className='row' key={item.id}>
+<div className='col-sm-2'>{item.name}</div>
+
+<div className='col-sm-2'>{item.attack}</div>
+<div className='col-sm-2'>{item.defense}</div>
+<div className='col-sm-2'style={{borderRight:'none'}}>{item.hp}</div>
+</div>
+)))}
+</div>
+<div className='design'>
+<button className='btn btn-primary' onClick={prev}>Prev</button>
+{num.map((item)=>(
+<button className='btn btn-primary' key={item} onClick={pageList}>{item}</button>
+))}
+<button className='btn btn-primary' onClick={next}>Next</button>
+</div>
+</div>
+</div>
+);
+};
+export default App;
